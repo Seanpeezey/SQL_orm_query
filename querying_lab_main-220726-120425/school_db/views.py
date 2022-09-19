@@ -156,7 +156,7 @@ def problem_three(request):
       
       print(f"   -{course.name}")
 
-      
+
     return complete(request)
 
 
@@ -203,6 +203,12 @@ SELECT `school_db_instructor`.`id`,
 # Get the count of students, courses, and instructors and print them in the terminal
 def problem_four(request):
 
+    total_students = Student.objects.count()
+    total_courses = Course.objects.count()
+    total_inst = Instructor.objects.count()
+
+    print(f"Students Count: {total_students}\nCourses Count: {total_courses}\nInstructors Count: {total_inst}")
+
     return complete(request)
 
 
@@ -247,6 +253,10 @@ SELECT COUNT(*) AS `__count`
 # NOTE every time you execute this function a duplicate student will be created with a different primary key number
 def problem_five(request):
 
+    new_student = Student.objects.create(first_name="Sean", last_name="Perinuzzi", gpa=2.8)
+
+    print(f"Id: {new_student.id}\nFull Name: {new_student.first_name} {new_student.last_name}\nYear: {new_student.year}\nGPA: {new_student.gpa}")
+
     return complete(request)
 
 
@@ -281,6 +291,10 @@ def problem_six(request):
 
     # Make sure to set this equal to the primary key of the row you just created!
     student_id = 11
+    Student.objects.filter(id=13).update(gpa=3.8)
+    student_13 = Student.objects.get(id=13)
+    print(f"Id: {student_13.id}\nFull Name: {student_13.first_name} {student_13.last_name}\nGPA: {student_13.gpa}")
+
 
     return complete(request)
 
